@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-// adlkfjadfh
 
 public class AdapterActivity extends ArrayAdapter{
     private LayoutInflater inflater;
@@ -21,3 +20,5 @@ public class AdapterActivity extends ArrayAdapter{
         return inflater.inflate(R.layout.activity_row, parent, false);
     }
 }
+
+//this is another test
