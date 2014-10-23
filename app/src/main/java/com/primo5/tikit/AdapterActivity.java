@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+// adlkfjadfh
 
 public class AdapterActivity extends ArrayAdapter{
     private LayoutInflater inflater;
