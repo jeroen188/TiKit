@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
     private ImageButton ib;
     private Calendar cal;
@@ -32,7 +32,37 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        missionItemArrayAdapter = new AdapterActivity(this, new String[10]);
 
+        missionListView = (ListView) findViewById(R.id.missionList);
+        missionListView.setAdapter(missionItemArrayAdapter);
+        // mDateButton = (Button) findViewById(R.id.date_button);
+        ib = (ImageButton) findViewById(R.id.imageButton1);
+        cal = Calendar.getInstance();
+        day = cal.get(Calendar.DAY_OF_MONTH);
+        month = cal.get(Calendar.MONTH);
+        year = cal.get(Calendar.YEAR);
+        et = (EditText) findViewById(R.id.editText);
+        ib.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        showDialog(0);
+    }
+
+    @Override
+    @Deprecated
+    protected Dialog onCreateDialog(int id) {
+        return new DatePickerDialog(this, datePickerListener, year, month, day);
+    }
+
+    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+            et.setText(selectedDay + " / " + (selectedMonth + 1) + " / "
+                    + selectedYear);
+        }
     };
 
     @Override
@@ -41,7 +71,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-// test comment
+ //jeroen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
